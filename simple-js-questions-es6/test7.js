@@ -1,18 +1,39 @@
-// 1. What functionality is this class trying to achieve?
-// 2. Is there any redundant code? Suggest some improvements in the code of this class.
+/*
+1. What functionality is this class trying to achieve?
 
+The class Mystery looks like a tags/keywords handler.
+
+2. Is there any redundant code? Suggest some improvements in the code of this class.
+*/ 
 class Mystery {
+    //First we need to add a constructor to initialize every instance 
+    //of Mistery with an empty array of keywords.
 
-    add(event) {
-        const { input, value } = event;
+    constructor(){
+        this.keywords = []
+    }
 
-        if (!this.keywordExists(value) && (value || '').trim()) {
-            this.keywords.push({ value: value.trim() });
+    // The method "add" help us to aggregate only new words to keywords array.
+    // Since "input" is not used anymore (useless code), we are going to replace some things as follow
+    // The new input will be a string instead of an object.
+    add(value) {
+
+        // We do not have to deconstruct anymore. 
+        // const { input, value } = event;
+
+        // To check if the keyword is not already in keyword we have to trim "value" first
+        let trimValue = value.trim()
+        if (!this.keywordExists(trimValue) && trimValue !== "") {
+            // If is not required to be an object we can use string instead
+            this.keywords.push(trimValue);
         }
+        /*
+        This code is useless
 
         if (input) {
             input.value = '';
         }
+        */
     }
 
     keywordExists(value) {
